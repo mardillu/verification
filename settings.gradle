@@ -1,0 +1,3 @@
+include ':verification'
+include ':app'
+rootProject.name = "Verification"
