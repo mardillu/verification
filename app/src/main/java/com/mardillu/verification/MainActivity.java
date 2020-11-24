@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("image_context", 1);
         intent.putExtra("farmer_name", "Ezekiel Sebastine");
         intent.putExtra("farmer_phone_number", "0550670914");
+        intent.putExtra("model_name", "facenet.tflite");
         startActivityForResult(intent, 1);
     }
 

@@ -264,7 +264,13 @@ class FaceRecognitionFragment : Fragment(), LifecycleOwner {
     private fun verifyFace(face1Bitmap: Bitmap?, face2Bitmap: Bitmap?) {
         Thread {
             try {
-                val facenet = FaceNet(activity?.assets)
+                var modelPath: String? =  (activity as VerificationActivity?)!!.modelPath
+                val facenet: FaceNet
+                facenet = if (modelPath == null){
+                    FaceNet(activity?.assets)
+                }else{
+                    FaceNet(modelPath)
+                }
                 //val mtcnn = MTCNN(activity?.assets)
                 //val face1: Bitmap = facenet.cropFace(face1Bitmap, mtcnn)
                 //val face2: Bitmap = facenet.cropFace(face2Bitmap, mtcnn)

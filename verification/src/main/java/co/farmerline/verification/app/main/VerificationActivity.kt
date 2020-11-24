@@ -11,6 +11,7 @@ class VerificationActivity : AppCompatActivity() {
     public var imageName: String? = ""
     public var farmerName: String? = ""
     public var phoneNumber: String? = ""
+    public var modelPath: String? = ""
     public var farmerContext by Delegates.notNull<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +23,7 @@ class VerificationActivity : AppCompatActivity() {
         farmerContext = intent.getIntExtra("image_context", 1)
         farmerName = this.intent.getStringExtra("farmer_name")
         phoneNumber = this.intent.getStringExtra("farmer_phone_number")
-
+        modelPath = this.intent.getStringExtra("model_name")
     }
 
     public fun setFinishActivity(score: Double){

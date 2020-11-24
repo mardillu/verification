@@ -41,6 +41,7 @@ public class IntroActivity extends AppCompatActivity {
     String imageName;
     String phoneNumber;
     String farmerName;
+    String modelPath;
     int farmerContext;
 
     double verificationScore;
@@ -66,15 +67,15 @@ public class IntroActivity extends AppCompatActivity {
         phoneNumber = intent.getStringExtra("farmer_phone_number");
         farmerName = intent.getStringExtra("farmer_name");
         farmerContext = intent.getIntExtra("image_context", 1);
+        modelPath = intent.getStringExtra("model_name");
 
         boolean canProceed = true;
         String message = "";
-
+        File file;
         if (imageName == null){
             canProceed = false;
             message += "Image name cannot be null | ";
         }else {
-            File file;
             if (farmerContext == 1) {
                 file = new File(Environment.getExternalStorageDirectory() + "/MERGDATA/Images/" + imageName);
             }else {
@@ -91,9 +92,20 @@ public class IntroActivity extends AppCompatActivity {
             message += "Farmer name cannot be null |";
         }
 
+        if (modelPath != null){
+            file = new File(Environment.getExternalStorageDirectory() + "/MERGDATA/Models/"+modelPath);
+            if (!file.exists()){
+                canProceed = false;
+                message += "Model does not exist on device | ";
+            }
+        }
+
         if (canProceed) {
             startAct(null);
         }else {
+            if (phoneNumber == null || phoneNumber.isEmpty()){
+                phoneNumber = "-";
+            }
             setFinishActivity(message);
         }
 
@@ -112,6 +124,7 @@ public class IntroActivity extends AppCompatActivity {
         intent.putExtra("image_context", farmerContext);
         intent.putExtra("farmer_name", farmerName);
         intent.putExtra("farmer_phone_number", phoneNumber);
+        intent.putExtra("model_name", modelPath==null?null:Environment.getExternalStorageDirectory() + "/MERGDATA/Models/"+modelPath);
         startActivityForResult(intent, 1);
     }
 

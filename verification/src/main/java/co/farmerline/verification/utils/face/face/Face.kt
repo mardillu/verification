@@ -3,8 +3,6 @@ package co.farmerline.verification.utils.face.face
 import android.graphics.Bitmap
 import android.graphics.Rect
 import com.google.firebase.ml.vision.face.FirebaseVisionFace
-import co.farmerline.verification.utils.face.classifier.FaceClassifier
-import co.farmerline.verification.utils.face.classifier.onClassifyLambdaType
 import kotlin.properties.Delegates
 
 class Face(visionFace: FirebaseVisionFace, var frame: Bitmap) {
@@ -59,15 +57,5 @@ class Face(visionFace: FirebaseVisionFace, var frame: Bitmap) {
     fun updateFace(visionFace: FirebaseVisionFace, frame: Bitmap) {
         this.frame = frame
         this.visionFace = visionFace
-    }
-
-    suspend fun classifyFace(
-        faceClassifier: FaceClassifier,
-        onClassify: onClassifyLambdaType = {}
-    ) {
-        faceClassifier.classify(this.getFaceBitmap()) {
-            this.label = it
-            onClassify(it)
-        }
     }
 }

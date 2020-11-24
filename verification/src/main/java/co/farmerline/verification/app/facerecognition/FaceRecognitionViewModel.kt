@@ -5,23 +5,21 @@ import androidx.camera.core.ImageAnalysis
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.android.gms.vision.face.Landmark
-import com.google.firebase.ml.vision.common.FirebaseVisionImageMetadata
-import kotlinx.coroutines.launch
 import co.farmerline.verification.utils.camera.analysis.CameraAnalysisFactory
 import co.farmerline.verification.utils.camera.analysis.CameraFrameAnalyzerLambdaType
 import co.farmerline.verification.utils.camera.analysis.configs.LowResFaceDetectionCameraAnalysisConfig
-import co.farmerline.verification.utils.face.classifier.FaceClassifier
-import co.farmerline.verification.utils.face.highlighter.highlight.FaceHighlight
 import co.farmerline.verification.utils.face.detector.FaceDetector
 import co.farmerline.verification.utils.face.detector.onDetectLambdaType
-import co.farmerline.verification.utils.face.highlighter.highlight.LabeledRectangularFaceHighlight
 import co.farmerline.verification.utils.face.face.Face
+import co.farmerline.verification.utils.face.highlighter.highlight.FaceHighlight
+import co.farmerline.verification.utils.face.highlighter.highlight.LabeledRectangularFaceHighlight
+import com.google.android.gms.vision.face.Landmark
+import com.google.firebase.ml.vision.common.FirebaseVisionImageMetadata
+import kotlinx.coroutines.launch
 
 class FaceRecognitionViewModel : ViewModel() {
 
     private lateinit var faceDetector: FaceDetector
-    private lateinit var faceClassifier: FaceClassifier
     private lateinit var fragment: FaceRecognitionFragment
 
     val highlightedFacesHashMap = HashMap<Int, Face>()
