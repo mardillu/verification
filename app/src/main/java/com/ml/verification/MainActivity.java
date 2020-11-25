@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("farmer_name", "Ezekiel Sebastine");
         intent.putExtra("farmer_phone_number", "0550670914");
         intent.putExtra("model_name", "facenet.tflite");
+        intent.putExtra("threshold", 0.70);
         startActivityForResult(intent, 1);
     }
 

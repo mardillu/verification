@@ -12,6 +12,7 @@ class VerificationActivity : AppCompatActivity() {
     public var farmerName: String? = ""
     public var phoneNumber: String? = ""
     public var modelPath: String? = ""
+    public var threshHold by Delegates.notNull<Double>()
     public var farmerContext by Delegates.notNull<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,12 +25,13 @@ class VerificationActivity : AppCompatActivity() {
         farmerName = this.intent.getStringExtra("farmer_name")
         phoneNumber = this.intent.getStringExtra("farmer_phone_number")
         modelPath = this.intent.getStringExtra("model_name")
+        threshHold = intent.getDoubleExtra("threshold", 0.70)
     }
 
     public fun setFinishActivity(score: Double){
         var it = Intent(this, VerificationActivity::class.java)
         it.putExtra("score", score)
-        if (score >= 0.70){
+        if (score >= threshHold){
             it.putExtra("status", "success")
         }else{
             it.putExtra("status", "failed")

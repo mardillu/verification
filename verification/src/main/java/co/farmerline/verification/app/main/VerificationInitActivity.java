@@ -40,6 +40,7 @@ public class VerificationInitActivity extends AppCompatActivity {
     String farmerName;
     String modelPath;
     int farmerContext;
+    double threshHold;
 
     double verificationScore;
 
@@ -65,6 +66,7 @@ public class VerificationInitActivity extends AppCompatActivity {
         farmerName = intent.getStringExtra("farmer_name");
         farmerContext = intent.getIntExtra("image_context", 1);
         modelPath = intent.getStringExtra("model_name");
+        threshHold = intent.getDoubleExtra("threshold", 0.70);
 
         boolean canProceed = true;
         String message = "";
@@ -121,6 +123,7 @@ public class VerificationInitActivity extends AppCompatActivity {
         intent.putExtra("image_context", farmerContext);
         intent.putExtra("farmer_name", farmerName);
         intent.putExtra("farmer_phone_number", phoneNumber);
+        intent.putExtra("threshold", threshHold);
         intent.putExtra("model_name", modelPath==null?null:Environment.getExternalStorageDirectory() + "/MERGDATA/Models/"+modelPath);
         startActivityForResult(intent, 1);
     }
@@ -156,7 +159,7 @@ public class VerificationInitActivity extends AppCompatActivity {
         Intent it = new Intent(this, VerificationInitActivity.class);
         it.putExtra("score", score);
         it.putExtra("message", "");
-        if (score >= 0.70){
+        if (score >= threshHold){
             it.putExtra("status", "success");
         }else{
             it.putExtra("status", "failed");
