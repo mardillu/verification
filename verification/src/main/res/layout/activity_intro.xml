@@ -57,7 +57,6 @@
             android:id="@+id/farmer_image_large"
             android:scaleType="centerCrop"
             android:layout_below="@+id/header_layout"
-            android:src="@drawable/demo"
             android:layout_above="@+id/bottom_layout"/>
 
         <RelativeLayout
@@ -79,7 +78,6 @@
                     android:id="@+id/farmer_image_small"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/demo"
                     android:scaleType="centerCrop"
                     app:civ_border_color="#fff"
                     app:civ_border_width="1.5dp" />

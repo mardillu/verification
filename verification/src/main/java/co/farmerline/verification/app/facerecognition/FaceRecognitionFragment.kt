@@ -176,7 +176,7 @@ class FaceRecognitionFragment : Fragment(), LifecycleOwner {
         //restart the count down timer whenever a face is detected
         updateCountDownTimer()
 
-        //take picture on the third frame and fifth frame only, per session
+        //take picture on the fifth frame only, per session
         //this gives camera enough time to focus on target face and take a good image
         if (frameCount++ != 5){
             return
