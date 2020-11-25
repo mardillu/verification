@@ -1,18 +1,15 @@
 package co.farmerline.verification.app.main;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.exifinterface.media.ExifInterface;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
@@ -29,7 +26,7 @@ import java.io.File;
 import de.hdodenhof.circleimageview.CircleImageView;
 import co.farmerline.verification.R;
 
-public class IntroActivity extends AppCompatActivity {
+public class VerificationInitActivity extends AppCompatActivity {
 
     TextView notificationText, farmerNameText, phoneNumberText;
     ImageView farmerImageLarge, notificationImage;
@@ -156,7 +153,7 @@ public class IntroActivity extends AppCompatActivity {
     }
 
     public void setFinishActivity(double score){
-        Intent it = new Intent(this, IntroActivity.class);
+        Intent it = new Intent(this, VerificationInitActivity.class);
         it.putExtra("score", score);
         it.putExtra("message", "");
         if (score >= 0.70){
@@ -170,7 +167,7 @@ public class IntroActivity extends AppCompatActivity {
 
 
     public void setFinishActivity(String message){
-        Intent it = new Intent(this, IntroActivity.class);
+        Intent it = new Intent(this, VerificationInitActivity.class);
         it.putExtra("score", Math.max(verificationScore, 0.0));
         it.putExtra("status", "failed");
         it.putExtra("message", message);
@@ -181,7 +178,7 @@ public class IntroActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent it = new Intent(this, IntroActivity.class);
+        Intent it = new Intent(this, VerificationInitActivity.class);
         it.putExtra("score", Math.max(verificationScore, 0.0));
         it.putExtra("status", "failed");
         it.putExtra("message", "Canceled");
