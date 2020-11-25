@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.mardillu.verification">
+    package="com.ml.verification">
 
     <uses-sdk tools:overrideLibrary="androidx.camera.extensions, androidx.camera.camera2, androidx.camera.view, androidx.camera.core, co.farmerline.verification" />
 
@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity android:name="com.ml.verification.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

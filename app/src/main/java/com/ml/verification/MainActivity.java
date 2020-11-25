@@ -1,4 +1,4 @@
-package com.mardillu.verification;
+package com.ml.verification;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;

@@ -282,23 +282,28 @@ class FaceRecognitionFragment : Fragment(), LifecycleOwner {
                 Log.d("TAG", "verifyFace: SCORE $score")
                 //mtcnn.close()
                 facenet.close()
-                hideDialog()
                 sendResultSuccess(score)
             } catch (e: Exception) {
                 e.printStackTrace()
-                hideDialog()
                 sendResultError(e.message)
             }
         }.start()
     }
 
     private fun sendResultSuccess(score: Double){
-        (activity as VerificationActivity?)!!.setFinishActivity(score)
+        try {
+            (activity as VerificationActivity?)!!.setFinishActivity(score)
+        }catch (e: java.lang.Exception){}
     }
 
     override fun onPause() {
         super.onPause()
         countDownTimer?.cancel()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        hideDialog()
     }
 
     override fun onResume() {
@@ -307,7 +312,9 @@ class FaceRecognitionFragment : Fragment(), LifecycleOwner {
     }
 
     private fun sendResultError(message: String?){
-        (activity as VerificationActivity?)!!.setFinishActivity(message)
+        try {
+            (activity as VerificationActivity?)!!.setFinishActivity(message)
+        }catch (e: java.lang.Exception){}
     }
 
     private fun updateCountDownTimer(){
