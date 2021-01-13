@@ -11,6 +11,7 @@ class VerificationActivity : AppCompatActivity() {
     public var imageName: String? = ""
     public var farmerName: String? = ""
     public var phoneNumber: String? = ""
+    public var farmerIdString: String? = ""
     public var modelPath: String? = ""
     public var threshHold by Delegates.notNull<Double>()
     public var farmerContext by Delegates.notNull<Int>()
@@ -26,11 +27,13 @@ class VerificationActivity : AppCompatActivity() {
         phoneNumber = this.intent.getStringExtra("farmer_phone_number")
         modelPath = this.intent.getStringExtra("model_name")
         threshHold = intent.getDoubleExtra("threshold", 0.70)
+        farmerIdString = this.intent.getStringExtra("farmer_id_string")
     }
 
     public fun setFinishActivity(score: Double){
         var it = Intent(this, VerificationActivity::class.java)
         it.putExtra("score", score)
+        it.putExtra("farmer_id_string", farmerIdString)
         if (score >= threshHold){
             it.putExtra("status", "success")
         }else{
@@ -45,6 +48,7 @@ class VerificationActivity : AppCompatActivity() {
         it.putExtra("score", 0.0)
         it.putExtra("status", "failed")
         it.putExtra("message", message)
+        it.putExtra("farmer_id_string", farmerIdString)
         setResult(RESULT_OK, it)
         finish()
     }
@@ -55,6 +59,7 @@ class VerificationActivity : AppCompatActivity() {
         it.putExtra("score", -1.0)
         it.putExtra("status", "failed")
         it.putExtra("message", "Canceled")
+        it.putExtra("farmer_id_string", farmerIdString)
         setResult(RESULT_CANCELED, it)
         finish()
     }

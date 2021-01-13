@@ -39,6 +39,7 @@ public class VerificationInitActivity extends AppCompatActivity {
     String phoneNumber;
     String farmerName;
     String modelPath;
+    String farmerIdString;
     int farmerContext;
     double threshHold;
 
@@ -67,6 +68,7 @@ public class VerificationInitActivity extends AppCompatActivity {
         farmerContext = intent.getIntExtra("image_context", 1);
         modelPath = intent.getStringExtra("model_name");
         threshHold = intent.getDoubleExtra("threshold", 0.70);
+        farmerIdString = intent.getStringExtra("farmer_id_string");
 
         boolean canProceed = true;
         String message = "";
@@ -124,6 +126,7 @@ public class VerificationInitActivity extends AppCompatActivity {
         intent.putExtra("farmer_name", farmerName);
         intent.putExtra("farmer_phone_number", phoneNumber);
         intent.putExtra("threshold", threshHold);
+        intent.putExtra("farmer_id_string", farmerIdString);
         intent.putExtra("model_name", modelPath==null?null:Environment.getExternalStorageDirectory() + "/MERGDATA/Models/"+modelPath);
         startActivityForResult(intent, 1);
     }
