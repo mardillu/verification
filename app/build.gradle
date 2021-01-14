@@ -22,11 +22,6 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    aaptOptions {
-        noCompress "tflite"
-        noCompress "pb"
-    }
-
     buildTypes {
         release {
             minifyEnabled false
