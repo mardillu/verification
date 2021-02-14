@@ -73,9 +73,9 @@ public class VerificationInitActivity extends AppCompatActivity {
         boolean canProceed = true;
         String message = "";
         File file;
-        if (imageName == null){
+        if (imageName == null || imageName.isEmpty()){
             canProceed = false;
-            message += "Image name cannot be null | ";
+            message += "Image name cannot be null or empty | ";
         }else {
             if (farmerContext == 1) {
                 file = new File(Environment.getExternalStorageDirectory() + "/MERGDATA/Images/" + imageName);
@@ -88,17 +88,19 @@ public class VerificationInitActivity extends AppCompatActivity {
             }
         }
 
-        if (farmerName == null){
+        if (farmerName == null || farmerName.isEmpty()){
             canProceed = false;
-            message += "Farmer name cannot be null |";
+            message += "Farmer name cannot be null or empty |";
         }
 
-        if (modelPath != null){
+        if (modelPath != null && !modelPath.isEmpty()){
             file = new File(Environment.getExternalStorageDirectory() + "/MERGDATA/Models/"+modelPath);
             if (!file.exists()){
                 canProceed = false;
                 message += "Model does not exist on device | ";
             }
+        }else {
+            message += "Model name cannot be null or empty |";
         }
 
         if (canProceed) {
@@ -108,6 +110,7 @@ public class VerificationInitActivity extends AppCompatActivity {
                 phoneNumber = "-";
             }
             setFinishActivity(message);
+            return;
         }
 
         FirebaseApp.initializeApp(this);
@@ -251,7 +254,6 @@ public class VerificationInitActivity extends AppCompatActivity {
 
     private Bitmap rotateImageBitmap(Bitmap bitmap, String path){
         try {
-            File file = new File(path);
             ExifInterface ei = new ExifInterface(path);
             int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
                     ExifInterface.ORIENTATION_UNDEFINED);

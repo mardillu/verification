@@ -232,7 +232,7 @@ class FaceRecognitionFragment : Fragment(), LifecycleOwner {
 
     private fun hideDialog(){
         activity?.runOnUiThread {
-            if (dialog.isShowing) {
+            if (dialog != null && dialog.isShowing) {
                 dialog.dismiss()
             }
         }
