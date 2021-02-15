@@ -30,7 +30,7 @@ dependencies {
 
     // Android face detector
     //implementation "com.github.husaynhakeem:android-face-detector:2.0" // Remote
-    implementation(project(":facedetector"))
+    implementation project(":facedetector")
 
     implementation 'com.squareup.picasso:picasso:2.71828'
 }
